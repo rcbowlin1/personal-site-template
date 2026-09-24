@@ -1,0 +1,53 @@
+---
+layout: base.njk
+---
+<section class="hero">
+  <p class="eyebrow">{{ profile.brand.eyebrow }}</p>
+  <h1>{{ profile.brand.headline }}</h1>
+  <p class="lede">{{ profile.brand.lede }}</p>
+  <p class="hero-actions">
+    {%- for a in profile.heroActions %}
+    <a class="btn {% if a.ghost %}btn-ghost{% endif %}" href="{{ a.url }}">{{ a.label }}</a>
+    {%- endfor %}
+  </p>
+</section>
+
+{%- if profile.proof and profile.proof.length %}
+<section class="proof">
+  <h2>Shipped &amp; supported</h2>
+  <p class="section-note">A few highlights from things I've worked on.</p>
+  <ul class="proof-list">
+    {%- for item in profile.proof %}
+    <li>
+      {%- if item.url %}<a href="{{ item.url }}">{{ item.title }}</a>{%- else %}<a>{{ item.title }}</a>{%- endif %}
+      <span>{{ item.note }}</span>
+    </li>
+    {%- endfor %}
+  </ul>
+</section>
+{%- endif %}
+
+{%- if profile.projects and profile.projects.length %}
+<section class="home-work">
+  <h2>My Work</h2>
+  <p class="section-note">Hands-on builds and deeper looks at how I approach a problem.</p>
+  <ul class="post-index post-index--cards">
+    {%- for p in profile.projects %}
+    <li>
+      {%- if p.tag %}<span class="tag">{{ p.tag }}</span>{%- endif %}
+      <a href="{{ p.url }}">{{ p.title }}</a>
+      <span class="post-meta">{{ p.note }}</span>
+    </li>
+    {%- endfor %}
+  </ul>
+  <p class="more"><a href="/work/">See more →</a></p>
+</section>
+{%- endif %}
+
+{% include "experience-logos.njk" %}
+
+<section class="home-connect">
+  <h2>Let's connect</h2>
+  <p>{{ profile.connectIntro }}</p>
+  <p class="hero-actions"><a class="btn" href="/connect/">Get in touch</a></p>
+</section>

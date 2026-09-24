@@ -1,0 +1,52 @@
+{%- if profile.experience and profile.experience.length %}
+<section class="logos-section no-count">
+  <h2>Background &amp; Experience</h2>
+  <p class="section-note">Click a logo to learn more.</p>
+
+  <div class="marquee">
+    <ul class="logo-row logo-row--left">
+      {%- for co in profile.experience %}
+      <li><button class="logo-btn" data-company="co-{{ loop.index }}" aria-haspopup="dialog" aria-label="{{ co.name }}"><img src="{{ co.logo }}?v={{ assets.logosHash }}" alt="{{ co.name }}" /></button></li>
+      {%- endfor %}
+      {%- for co in profile.experience %}
+      <li aria-hidden="true"><button class="logo-btn" tabindex="-1" data-company="co-{{ loop.index }}"><img src="{{ co.logo }}?v={{ assets.logosHash }}" alt="" /></button></li>
+      {%- endfor %}
+    </ul>
+  </div>
+
+  <div class="marquee">
+    <ul class="logo-row logo-row--right">
+      {%- for co in profile.experience | reverse %}
+      <li aria-hidden="true"><button class="logo-btn" tabindex="-1" data-company="co-{{ (profile.experience.length - loop.index0) }}"><img src="{{ co.logo }}?v={{ assets.logosHash }}" alt="" /></button></li>
+      {%- endfor %}
+    </ul>
+  </div>
+
+  {%- for co in profile.experience %}
+  <dialog class="company-modal" id="modal-co-{{ loop.index }}">
+    <button class="modal-close" aria-label="Close">&times;</button>
+    <h3>{{ co.name }}</h3>
+    {%- if co.sub %}<p class="modal-sub">{{ co.sub }}</p>{%- endif %}
+    <ul>
+      {%- for b in co.bullets %}<li>{{ b }}</li>{%- endfor %}
+    </ul>
+  </dialog>
+  {%- endfor %}
+
+  <script>
+    (function () {
+      document.querySelectorAll('.logo-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var d = document.getElementById('modal-' + btn.dataset.company);
+          if (d && typeof d.showModal === 'function') d.showModal();
+        });
+      });
+      document.querySelectorAll('.company-modal').forEach(function (d) {
+        d.addEventListener('click', function (e) { if (e.target === d) d.close(); });
+        var c = d.querySelector('.modal-close');
+        if (c) c.addEventListener('click', function () { d.close(); });
+      });
+    })();
+  </script>
+</section>
+{%- endif %}

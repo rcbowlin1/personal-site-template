@@ -1,0 +1,9 @@
+---
+layout: base.njk
+---
+<article class="post">
+  <p class="post-meta">{{ page.date | readableDate }}{% if category %} · {{ category }}{% endif %}</p>
+  <h1>{{ title }}</h1>
+  {{ content | safe }}
+  <p class="back"><a href="/writing/">← All writing</a></p>
+</article>

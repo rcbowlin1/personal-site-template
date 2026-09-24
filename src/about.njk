@@ -1,0 +1,21 @@
+---
+layout: base.njk
+title: About
+---
+<section class="page-head">
+  <h1>{{ profile.about.heading }}</h1>
+</section>
+
+{%- for row in profile.about.rows %}
+<div class="about-row {% if loop.index0 % 2 == 1 %}about-row--reverse{% endif %}">
+  <div class="about-body">
+    {%- if row.heading %}<h2>{{ row.heading }}</h2>{%- endif %}
+    <p>{{ row.body }}</p>
+  </div>
+  <div class="about-media">
+    {%- if row.image %}<img src="{{ row.image }}" alt="" />{%- else %}<div class="img-placeholder">Add an image</div>{%- endif %}
+  </div>
+</div>
+{%- endfor %}
+
+{% include "experience-logos.njk" %}

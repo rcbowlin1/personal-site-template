@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800" role="img" aria-label="Placeholder image">
+  <rect width="800" height="800" fill="#17171b"/>
+  <rect x="8" y="8" width="784" height="784" fill="none" stroke="#2f9e74" stroke-width="2" stroke-dasharray="10 10" opacity="0.5"/>
+  <g fill="#8b8b93" font-family="-apple-system, Segoe UI, Roboto, sans-serif" text-anchor="middle">
+    <circle cx="400" cy="330" r="90" fill="none" stroke="#8b8b93" stroke-width="6"/>
+    <path d="M250 560 a150 150 0 0 1 300 0" fill="none" stroke="#8b8b93" stroke-width="6"/>
+    <text x="400" y="660" font-size="34" font-weight="600">Add your image</text>
+    <text x="400" y="704" font-size="24" fill="#6a6a72">src/img/ · update the path in content.js</text>
+  </g>
+</svg>

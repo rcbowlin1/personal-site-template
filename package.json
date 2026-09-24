@@ -1,0 +1,13 @@
+{
+  "name": "personal-site-template",
+  "version": "1.0.0",
+  "description": "A dark, fast, opinionated personal-site starter built on Eleventy. Fill it in with your own AI using PROMPT.md.",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}

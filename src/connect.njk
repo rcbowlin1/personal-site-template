@@ -1,0 +1,18 @@
+---
+layout: base.njk
+title: Connect
+---
+<section class="page-head">
+  <h1>Connect</h1>
+  <p class="section-note">{{ profile.connectIntro }}</p>
+</section>
+
+<section class="connect-grid">
+  {%- for card in profile.connect %}
+  <div class="connect-card">
+    <h2>{{ card.heading }}</h2>
+    <p>{{ card.body }}</p>
+    <a class="btn" href="mailto:{{ profile.email }}?subject={{ card.subject | urlencode }}">Email me</a>
+  </div>
+  {%- endfor %}
+</section>

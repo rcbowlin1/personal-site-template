@@ -1,0 +1,23 @@
+---
+layout: base.njk
+title: Writing
+---
+<section class="page-head">
+  <h1>Writing</h1>
+  <p class="section-note">Notes, essays, and half-formed thoughts. Add markdown files to <code>src/posts/</code>.</p>
+</section>
+
+<section>
+  {%- if collections.posts and collections.posts.length %}
+  <ul class="post-index">
+    {%- for post in collections.posts | reverse %}
+    <li>
+      <a href="{{ post.url }}">{{ post.data.title }}</a>
+      <span class="post-meta">{{ post.date | readableDate }}{% if post.data.category %} · {{ post.data.category }}{% endif %}</span>
+    </li>
+    {%- endfor %}
+  </ul>
+  {%- else %}
+  <p class="placeholder">[ No posts yet — drop a markdown file in src/posts/ to get started. ]</p>
+  {%- endif %}
+</section>

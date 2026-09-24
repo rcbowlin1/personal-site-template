@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  {% set pageTitle = (title + " · " + site.name) if title else site.name %}
+  {% set pageDesc = description or site.description %}
+  {% set pageUrl = (site.url + page.url) %}
+  {% set ogImageUrl = (site.url + site.ogImage + "?v=" + assets.ogHash) %}
+  <title>{{ pageTitle }}</title>
+  <meta name="description" content="{{ pageDesc }}" />
+  <link rel="canonical" href="{{ pageUrl }}" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="{{ site.name }}" />
+  <meta property="og:title" content="{{ pageTitle }}" />
+  <meta property="og:description" content="{{ pageDesc }}" />
+  <meta property="og:url" content="{{ pageUrl }}" />
+  <meta property="og:image" content="{{ ogImageUrl }}" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{ pageTitle }}" />
+  <meta name="twitter:description" content="{{ pageDesc }}" />
+  <meta name="twitter:image" content="{{ ogImageUrl }}" />
+
+  <link rel="stylesheet" href="/css/styles.css?v={{ assets.cssHash }}" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="wordmark" href="/">{{ profile.brand.name }}</a>
+      <nav>
+        {%- for item in profile.nav %}
+        <a {% if item.cta %}class="nav-cta"{% elif item.outline %}class="nav-cta-outline"{% endif %} href="{{ item.url }}">{{ item.label }}</a>
+        {%- endfor %}
+      </nav>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      {%- for item in profile.nav %}
+      <a {% if item.cta %}class="nav-cta"{% elif item.outline %}class="nav-cta-outline"{% endif %} href="{{ item.url }}">{{ item.label }}</a>
+      {%- endfor %}
+    </div>
+  </header>
+
+  <main>
+    {{ content | safe }}
+  </main>
+
+  <footer class="site-footer" id="contact">
+    {%- if profile.footerNote %}<p class="disclaimer">{{ profile.footerNote }}</p>{%- endif %}
+    <div class="contact">
+      <span class="contact-name">{{ profile.brand.name }}</span>
+      <a href="mailto:{{ profile.email }}">Email</a>
+      {%- for link in profile.links %}
+      <a href="{{ link.url }}">{{ link.label }}</a>
+      {%- endfor %}
+    </div>
+    <p class="copyright">© <span id="year"></span> {{ profile.brand.name }}</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.querySelectorAll('a[href^="http"]').forEach(function (a) {
+      if (a.host !== location.host) { a.target = '_blank'; a.rel = 'noopener noreferrer'; }
+    });
+
+    // Mobile nav toggle.
+    (function () {
+      var toggle = document.querySelector('.nav-toggle');
+      var menu = document.getElementById('mobile-menu');
+      if (!toggle || !menu) return;
+      function close() { menu.setAttribute('hidden', ''); toggle.setAttribute('aria-expanded', 'false'); toggle.classList.remove('is-open'); document.body.classList.remove('menu-open'); }
+      function open() { menu.removeAttribute('hidden'); toggle.setAttribute('aria-expanded', 'true'); toggle.classList.add('is-open'); document.body.classList.add('menu-open'); }
+      toggle.addEventListener('click', function () { menu.hasAttribute('hidden') ? open() : close(); });
+      menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+    })();
+
+    // Header: transparent at top, frosted once scrolled.
+    (function () {
+      var header = document.querySelector('.site-header');
+      if (!header) return;
+      function onScroll() { header.classList.toggle('is-scrolled', window.scrollY > 8); }
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+    })();
+
+    // Scroll-reveal — only hides-then-reveals with JS + no reduced-motion.
+    (function () {
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce || !('IntersectionObserver' in window)) return;
+      document.documentElement.classList.add('reveal-on');
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+      document.querySelectorAll('main > section, main > .about-row, main > article').forEach(function (sec) {
+        var items = sec.querySelectorAll('.post-index--cards > li, .proof-list > li');
+        if (items.length) {
+          sec.classList.add('reveal-fade');
+          io.observe(sec);
+          items.forEach(function (li, i) { li.classList.add('reveal'); li.style.transitionDelay = (i * 70) + 'ms'; io.observe(li); });
+        } else {
+          sec.classList.add('reveal');
+          io.observe(sec);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

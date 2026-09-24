@@ -1,0 +1,38 @@
+---
+layout: base.njk
+title: Work
+---
+<section class="page-head">
+  <h1>Work</h1>
+  <p class="section-note">Things I've shipped and things I've worked on.</p>
+</section>
+
+{%- if profile.proof and profile.proof.length %}
+<section class="proof">
+  <h2>Shipped &amp; supported</h2>
+  <ul class="proof-list">
+    {%- for item in profile.proof %}
+    <li>
+      {%- if item.url %}<a href="{{ item.url }}">{{ item.title }}</a>{%- else %}<a>{{ item.title }}</a>{%- endif %}
+      <span>{{ item.note }}</span>
+    </li>
+    {%- endfor %}
+  </ul>
+</section>
+{%- endif %}
+
+{%- if profile.projects and profile.projects.length %}
+<section class="case-studies">
+  <h2>Projects and Deep Dives</h2>
+  <p class="section-note">Hands-on builds and deeper looks at how I approach a problem.</p>
+  <ul class="post-index post-index--cards">
+    {%- for p in profile.projects %}
+    <li>
+      {%- if p.tag %}<span class="tag">{{ p.tag }}</span>{%- endif %}
+      <a href="{{ p.url }}">{{ p.title }}</a>
+      <span class="post-meta">{{ p.note }}</span>
+    </li>
+    {%- endfor %}
+  </ul>
+</section>
+{%- endif %}
