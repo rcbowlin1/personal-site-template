@@ -541,7 +541,7 @@ html.reveal-on .reveal-fade.is-visible { opacity: 1; }
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
   transition: transform 0.14s ease, box-shadow 0.15s ease;
 }
-.chat-fab img { width: 92%; height: 92%; object-fit: contain; display: block; }
+.chat-fab img { width: 80%; height: 80%; object-fit: contain; display: block; }
 .chat-fab:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55); }
 .chat-fab:active { transform: scale(0.96); }
 
@@ -562,7 +562,7 @@ html.reveal-on .reveal-fade.is-visible { opacity: 1; }
   overflow: hidden;
 }
 .chat-head { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--line); }
-.chat-head-avatar { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line); }
+.chat-head-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: contain; border: 1px solid var(--line); }
 .chat-head-text { display: flex; flex-direction: column; line-height: 1.25; }
 .chat-head-text strong { font-size: 0.98rem; }
 .chat-head-text span { font-size: 0.76rem; color: var(--accent); }
