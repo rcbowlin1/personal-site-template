@@ -53,6 +53,8 @@
     {{ content | safe }}
   </main>
 
+  {% include "chat-widget.njk" %}
+
   <footer class="site-footer" id="contact">
     {%- if profile.footerNote %}<p class="disclaimer">{{ profile.footerNote }}</p>{%- endif %}
     <div class="contact">

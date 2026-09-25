@@ -87,4 +87,28 @@ module.exports = {
   ],
   // Optional small print in the footer (set to "" to hide):
   footerNote: "",
+
+  // --- Assistant (optional "ask" chat widget) -------------------------------
+  // A small, curated chat helper in the corner. It is CLIENT-SIDE ONLY — no
+  // backend, no language model, no API key, nothing to run up a bill. It answers
+  // the questions in `qa` below (shown as clickable chips + matched on free text)
+  // and gives an honest fallback for anything else. Set enabled:false to remove it.
+  // Let your AI fill the qa[] answers for you via PROMPT.md.
+  assistant: {
+    enabled: true,
+    name: "Sidekick",                        // your helper/mascot's name
+    avatar: "/img/assistant-avatar.svg",     // swap for your own image (square looks best)
+    subtitle: "still learning as the site grows",
+    greeting: "Hi — I'm your site's helper. I'm still learning, so I know a few things well (and I'll say when I don't). Ask me one:",
+    fallback: "That one I'm still learning. Try one of these, or reach out on the Connect page.",
+    // Each entry: q = the chip label / question, keywords = words to match free-text
+    // input on, a = the answer (plain text; simple <a href> links are fine).
+    qa: [
+      { q: "Who are you?", keywords: ["who", "you", "about", "role", "do"], a: "A one-line intro to who you are and what you do. (Edit this in profile.js.)" },
+      { q: "What have you built?", keywords: ["built", "build", "ship", "project", "work", "made"], a: "Name a highlight or two and point to your <a href=\"/work/\">Work</a> page." },
+      { q: "What do you write about?", keywords: ["write", "writing", "post", "blog", "thought", "read"], a: "Say what you write about and link the <a href=\"/writing/\">Writing</a> page." },
+      { q: "How do I reach you?", keywords: ["reach", "contact", "email", "connect", "hire", "talk", "message"], a: "Email is easiest, or use the <a href=\"/connect/\">Connect</a> page." },
+      { q: "Are you a real AI?", keywords: ["real", "ai", "how do you work", "model", "chatbot", "curated", "llm"], a: "Honest answer: I'm a curated helper, not a live model. I answer a set list of questions well and admit what I don't know." },
+    ],
+  },
 };

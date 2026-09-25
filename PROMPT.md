@@ -59,8 +59,19 @@ F. CONNECT
    - 2–4 reasons someone might reach out, each a heading + a warm one-liner + the
      email subject line to prefill.
 
+G. ASSISTANT (the little chat helper in the corner — profile.assistant)
+   - A name for the helper (a mascot name is fine), and whether I want it on at all.
+   - 4–6 questions visitors would actually ask about me, each with a short, honest
+     answer you draft from my earlier answers. Good defaults: who I am, what I've
+     built, what I write about, how to reach me, and "are you a real AI?".
+   - For each, also give a few lowercase keywords so free-typed questions match.
+   - Keep answers short and truthful, and write the fallback so the helper openly
+     admits when it doesn't know something. It is a curated helper, not a live
+     model — don't write answers that imply otherwise.
+
 When we're done, remind me to: (1) drop my images into src/img/ and update the
-paths, (2) replace src/img/og-card.png with my own, and (3) run `npm run serve`
+paths, (2) replace src/img/og-card.png with my own, (3) optionally swap
+src/img/assistant-avatar.svg for my own mascot, and (4) run `npm run serve`
 to see it. Then stop.
 ```
 

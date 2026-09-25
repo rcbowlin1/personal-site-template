@@ -32,6 +32,9 @@ from clone to a deployed site on GitHub Pages.
   restrained accent color, elevated cards, a scrolling logo strip.
 - **Details that usually get skipped:** content-hash cache-busting, an OG/link
   preview card, reduced-motion-safe scroll animations, and a mobile nav.
+- **A curated "ask" chat helper** in the corner (optional) — client-side only, no
+  backend or API key. It answers a set of questions you write and honestly says
+  when it doesn't know. Configure it in `profile.assistant`, or turn it off.
 
 ## The design decisions (and why)
 
